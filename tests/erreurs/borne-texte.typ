@@ -1,3 +1,3 @@
-// attendu : la borne inf doit être un nombre
+// attendu : the inf bound must be a number
 #import "/src/lib.typ": *
-#ctz-intervalle("a", 1)
+#ctz-interval("a", 1)

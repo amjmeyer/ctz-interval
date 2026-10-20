@@ -1,77 +1,77 @@
 #import "../src/lib.typ": *
 #set page(width: 16cm, height: auto, margin: 1cm)
 
-= Les exemples de la doc de ProfLycee (§13, p. 55 à 58)
+= The examples from ProfLycee's documentation (§13, p. 55–58)
 
-#rep-intervalles(
+#rpz-interval(
   xmin: -8, xmax: 20,
-  ctz-intervalle(
+  ctz-interval(
     "*", 13,
   ),
 )
 
-#rep-intervalles(
+#rpz-interval(
   xmin: -2, xmax: 8,
-  unite: 1cm,
-  graduations: range(-2, 9),
-  graduations-alt: (0, 5),
+  unit: 1cm,
+  ticks: range(-2, 9),
+  major-ticks: (0, 5),
 )
 
-#rep-intervalles(
+#rpz-interval(
   xmin: -100, xmax: 200,
-  longueur: 10, police: (size: 7pt), ep-trait: 0.6pt,
-  graduations: range(-100, 201, step: 10),
-  graduations-alt: range(-100, 201, step: 50),
-  valeurs: range(-100, 201, step: 50),
-  ctz-intervalle(
+  width: 10, text-style: (size: 7pt), thickness: 0.6pt,
+  ticks: range(-100, 201, step: 10),
+  major-ticks: range(-100, 201, step: 50),
+  values: range(-100, 201, step: 50),
+  ctz-interval(
     -15, 175,
-    aff-valeurs: true,
+    show-values: true,
   ),
-  ctz-intervalle(
+  ctz-interval(
     -56, 25,
-    couleur: teal, decor: "fond",
-    aff-valeurs: true,
+    color: teal, decor: "fill",
+    show-values: true,
   ),
-  ctz-intervalle(
+  ctz-interval(
     0, 79, type: "OO",
-    couleur: purple, decor: "zigzag", niveau-v: 1.5,
-    aff-valeurs: true,
+    color: purple, decor: "zigzag", level: 1.5,
+    show-values: true,
   ),
 )
 
-#rep-intervalles(
+#rpz-interval(
   xmin: -8, xmax: 8,
-  graduations: range(-8, 9),
-  ctz-intervalle(
+  ticks: range(-8, 9),
+  ctz-interval(
     -2, 5,
-    decor: "fond",
-    aff-valeurs: true, pos-valeurs: "below",
+    decor: "fill",
+    show-values: true, pos-values: "below",
   ),
-  ctz-intervalle(
+  ctz-interval(
     -7, -1, type: "OO",
-    couleur: blue, decor: "zigzag",
-    aff-valeurs: true, pos-valeurs: "below",
+    color: blue, decor: "zigzag",
+    show-values: true, pos-values: "below",
   ),
-  ctz-intervalle(
-    "*", 6, type: "FO",
-    couleur: orange, decor: "hach", niveau-v: 1.25,
-    aff-valeurs: true,
+  ctz-interval(
+    "*", 6, type: "CO",
+    color: orange, decor: "hatch", level: 1.25,
+    show-values: true,
   ),
 )
 
-#rep-intervalles(
+#rpz-interval(
   xmin: -8, xmax: 8,
-  graduations: range(-8, 9),
-  ctz-intervalle(
+  ticks: range(-8, 9),
+  ctz-interval(
     -2, 5,
-    decor: "fond",
-    aff-valeurs: true, pos-valeurs: "below",
+    decor: "fill",
+    show-values: true, pos-values: "below",
     label-inf: $a$, label-sup: $b$,
   ),
-  ctz-intervalle(
+  ctz-interval(
     -calc.sqrt(5), 2 / 3, type: "OO",
-    couleur: blue, decor: "fond",
-    aff-valeurs: true,
+    color: blue, decor: "fill",
+    show-values: true,
     label-inf: $-sqrt(5)$, label-sup: $2/3$,
   ),
 )

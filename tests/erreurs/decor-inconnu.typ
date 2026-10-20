@@ -1,3 +1,3 @@
-// attendu : ctz-intervalle : decor doit être
+// attendu : ctz-interval: decor must be
 #import "/src/lib.typ": *
-#ctz-intervalle(0, 1, decor: "points")
+#ctz-interval(0, 1, decor: "points")

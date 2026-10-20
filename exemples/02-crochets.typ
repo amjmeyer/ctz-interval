@@ -1,36 +1,36 @@
 #import "../src/lib.typ": *
 #set page(width: 16cm, height: auto, margin: 1cm)
 
-= Les quatre types de crochets
+= The four bracket types
 
-#rep-intervalles(
+#rpz-interval(
   xmin: -4, xmax: 5,
-  valeurs: (-2, 3),
-  ctz-intervalle(
-    -2, 3, type: "FF",
+  values: (-2, 3),
+  ctz-interval(
+    -2, 3, type: "CC",
   ),
 )
 
-#rep-intervalles(
+#rpz-interval(
   xmin: -4, xmax: 5,
-  valeurs: (-2, 3),
-  ctz-intervalle(
-    -2, 3, type: "FO",
+  values: (-2, 3),
+  ctz-interval(
+    -2, 3, type: "CO",
   ),
 )
 
-#rep-intervalles(
+#rpz-interval(
   xmin: -4, xmax: 5,
-  valeurs: (-2, 3),
-  ctz-intervalle(
-    -2, 3, type: "OF",
+  values: (-2, 3),
+  ctz-interval(
+    -2, 3, type: "OC",
   ),
 )
 
-#rep-intervalles(
+#rpz-interval(
   xmin: -4, xmax: 5,
-  valeurs: (-2, 3),
-  ctz-intervalle(
+  values: (-2, 3),
+  ctz-interval(
     -2, 3, type: "OO",
   ),
 )

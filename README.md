@@ -1,38 +1,36 @@
 # ctz-interval
 
-Intervals drawn on a number line, for French maths teaching, after Cédric
-Pierquet's LaTeX package [ProfLycee](https://ctan.org/pkg/proflycee): open or
-closed bounds, infinite bounds, background, zigzag or hatching decoration. The
-commands, their keys and this README are in French.
-
-Ce paquet sert pour la représentation d'intervalle(s). Je me suis basé sur le paquet LaTeX
-[ProfLycee](https://ctan.org/pkg/proflycee) de **Cédric Pierquet**. J'ai repris
-`RepIntervalles` et je l'ai adapté en Typst. Ce paquet importe [CeTZ](https://typst.app/universe/package/cetz) (version 0.5.2, voir [src/deps.typ](src/deps.typ)).
+Draw intervals on a number line, after Cédric Pierquet's LaTeX package
+[ProfLycee](https://ctan.org/pkg/proflycee) (`RepIntervalles`): open or closed
+bounds, infinite bounds, fill, zigzag or hatching decoration. It is built on
+[CeTZ](https://typst.app/universe/package/cetz) (version 0.5.2, see
+[src/deps.typ](src/deps.typ)).
 
 ```typ
-#import "@local/ctz-interval:0.1.0": *
+#import "@preview/ctz-interval:0.1.0": *
 ```
 
 ## Documentation
 
-Il n'y a pas de documentation : j'estime que les exemples ci-dessous suffisent.
+There is no separate documentation: the examples and the tables of keys below
+cover everything.
 
-## Exemples
+## Examples
 
-Cliquer sur le petit triangle à gauche pour voir le code du dessin.
+Click the small triangle on the left to see the code of a drawing.
 
 <!-- exemples : partie refaite par exemples/readme.sh, ne pas modifier à la main -->
-### 1. Le plus simple : pas de graduation
+### 1. The simplest: no ticks
 
 <details>
 <summary><img src="images/01-01.svg" alt="exemple 1.1"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: 0, xmax: 6,
-  valeurs: (3,),
-  ctz-intervalle(
-    3, "*", type: "FO",
+  values: (3,),
+  ctz-interval(
+    3, "*", type: "CO",
   ),
 )
 ```
@@ -43,10 +41,10 @@ Cliquer sur le petit triangle à gauche pour voir le code du dessin.
 <summary><img src="images/01-02.svg" alt="exemple 1.2"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -3, xmax: 6,
-  valeurs: (-1, 4),
-  ctz-intervalle(
+  values: (-1, 4),
+  ctz-interval(
     -1, 4,
   ),
 )
@@ -58,11 +56,11 @@ Cliquer sur le petit triangle à gauche pour voir le code du dessin.
 <summary><img src="images/01-03.svg" alt="exemple 1.3"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -3, xmax: 5,
-  ctz-intervalle(
+  ctz-interval(
     "*", 2, type: "OO",
-    aff-valeurs: true,
+    show-values: true,
   ),
 )
 ```
@@ -73,28 +71,28 @@ Cliquer sur le petit triangle à gauche pour voir le code du dessin.
 <summary><img src="images/01-04.svg" alt="exemple 1.4"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -2, xmax: 7,
-  ctz-intervalle(
-    0, 5, type: "OF",
-    aff-valeurs: true, pos-valeurs: "below",
+  ctz-interval(
+    0, 5, type: "OC",
+    show-values: true, pos-values: "below",
   ),
 )
 ```
 
 </details>
 
-### 2. Les quatre types de crochets
+### 2. The four bracket types
 
 <details>
 <summary><img src="images/02-01.svg" alt="exemple 2.1"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -4, xmax: 5,
-  valeurs: (-2, 3),
-  ctz-intervalle(
-    -2, 3, type: "FF",
+  values: (-2, 3),
+  ctz-interval(
+    -2, 3, type: "CC",
   ),
 )
 ```
@@ -105,11 +103,11 @@ Cliquer sur le petit triangle à gauche pour voir le code du dessin.
 <summary><img src="images/02-02.svg" alt="exemple 2.2"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -4, xmax: 5,
-  valeurs: (-2, 3),
-  ctz-intervalle(
-    -2, 3, type: "FO",
+  values: (-2, 3),
+  ctz-interval(
+    -2, 3, type: "CO",
   ),
 )
 ```
@@ -120,11 +118,11 @@ Cliquer sur le petit triangle à gauche pour voir le code du dessin.
 <summary><img src="images/02-03.svg" alt="exemple 2.3"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -4, xmax: 5,
-  valeurs: (-2, 3),
-  ctz-intervalle(
-    -2, 3, type: "OF",
+  values: (-2, 3),
+  ctz-interval(
+    -2, 3, type: "OC",
   ),
 )
 ```
@@ -135,10 +133,10 @@ Cliquer sur le petit triangle à gauche pour voir le code du dessin.
 <summary><img src="images/02-04.svg" alt="exemple 2.4"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -4, xmax: 5,
-  valeurs: (-2, 3),
-  ctz-intervalle(
+  values: (-2, 3),
+  ctz-interval(
     -2, 3, type: "OO",
   ),
 )
@@ -146,19 +144,19 @@ Cliquer sur le petit triangle à gauche pour voir le code du dessin.
 
 </details>
 
-### 3. Bornes infinies
+### 3. Infinite bounds
 
 <details>
 <summary><img src="images/03-01.svg" alt="exemple 3.1"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -5, xmax: 4,
-  graduations: range(-5, 5),
-  valeurs: (1,),
-  ctz-intervalle(
-    "*", 1, type: "OF",
-    couleur: blue, decor: "fond",
+  ticks: range(-5, 5),
+  values: (1,),
+  ctz-interval(
+    "*", 1, type: "OC",
+    color: blue, decor: "fill",
   ),
 )
 ```
@@ -169,13 +167,13 @@ Cliquer sur le petit triangle à gauche pour voir le code du dessin.
 <summary><img src="images/03-02.svg" alt="exemple 3.2"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -5, xmax: 4,
-  graduations: range(-5, 5),
-  valeurs: (-2,),
-  ctz-intervalle(
-    -2, "*", type: "FO",
-    couleur: blue, decor: "fond",
+  ticks: range(-5, 5),
+  values: (-2,),
+  ctz-interval(
+    -2, "*", type: "CO",
+    color: blue, decor: "fill",
   ),
 )
 ```
@@ -186,13 +184,13 @@ Cliquer sur le petit triangle à gauche pour voir le code du dessin.
 <summary><img src="images/03-03.svg" alt="exemple 3.3"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -5, xmax: 4,
-  graduations: range(-5, 5),
-  valeurs: (0,),
-  ctz-intervalle(
+  ticks: range(-5, 5),
+  values: (0,),
+  ctz-interval(
     "*", "*", type: "OO",
-    couleur: blue, decor: "fond",
+    color: blue, decor: "fill",
   ),
 )
 ```
@@ -203,32 +201,32 @@ Cliquer sur le petit triangle à gauche pour voir le code du dessin.
 <summary><img src="images/03-04.svg" alt="exemple 3.4"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -10, xmax: 10,
-  graduations: range(-10, 11),
-  valeurs: (0,),
-  longueur: 12,
-  ctz-intervalle(
+  ticks: range(-10, 11),
+  values: (0,),
+  width: 12,
+  ctz-interval(
     "*", 0, type: "OO",
-    couleur: gray, decor: "hach/135",
+    color: gray, decor: "hatch/135",
   ),
 )
 ```
 
 </details>
 
-### 4. Décorations
+### 4. Decorations
 
 <details>
 <summary><img src="images/04-01.svg" alt="exemple 4.1"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -1, xmax: 6,
-  valeurs: (1, 4),
-  ctz-intervalle(
+  values: (1, 4),
+  ctz-interval(
     1, 4,
-    couleur: teal, decor: "fond",
+    color: teal, decor: "fill",
   ),
 )
 ```
@@ -239,12 +237,12 @@ Cliquer sur le petit triangle à gauche pour voir le code du dessin.
 <summary><img src="images/04-02.svg" alt="exemple 4.2"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -1, xmax: 6,
-  valeurs: (1, 4),
-  ctz-intervalle(
+  values: (1, 4),
+  ctz-interval(
     1, 4,
-    couleur: purple, decor: "zigzag",
+    color: purple, decor: "zigzag",
   ),
 )
 ```
@@ -255,12 +253,12 @@ Cliquer sur le petit triangle à gauche pour voir le code du dessin.
 <summary><img src="images/04-03.svg" alt="exemple 4.3"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -1, xmax: 6,
-  valeurs: (1, 4),
-  ctz-intervalle(
+  values: (1, 4),
+  ctz-interval(
     1, 4,
-    couleur: orange, decor: "hach",
+    color: orange, decor: "hatch",
   ),
 )
 ```
@@ -271,38 +269,38 @@ Cliquer sur le petit triangle à gauche pour voir le code du dessin.
 <summary><img src="images/04-04.svg" alt="exemple 4.4"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -1, xmax: 11,
-  valeurs: (0, 3, 4, 7, 8, 10),
-  ctz-intervalle(
+  values: (0, 3, 4, 7, 8, 10),
+  ctz-interval(
     0, 3,
-    couleur: orange, decor: "hach/30",
+    color: orange, decor: "hatch/30",
   ),
-  ctz-intervalle(
+  ctz-interval(
     4, 7,
-    couleur: orange, decor: "hach/90",
+    color: orange, decor: "hatch/90",
   ),
-  ctz-intervalle(
+  ctz-interval(
     8, 10,
-    couleur: orange, decor: "hach/150",
+    color: orange, decor: "hatch/150",
   ),
 )
 ```
 
 </details>
 
-### 5. Graduations
+### 5. Ticks
 
 <details>
 <summary><img src="images/05-01.svg" alt="exemple 5.1"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -5, xmax: 5,
-  graduations: range(-5, 6),
-  ctz-intervalle(
-    -2, 3, type: "FO",
-    aff-valeurs: true,
+  ticks: range(-5, 6),
+  ctz-interval(
+    -2, 3, type: "CO",
+    show-values: true,
   ),
 )
 ```
@@ -313,32 +311,32 @@ Cliquer sur le petit triangle à gauche pour voir le code du dessin.
 <summary><img src="images/05-02.svg" alt="exemple 5.2"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: 0, xmax: 20,
-  graduations: range(0, 21),
-  graduations-alt: range(0,5).map(k => k*5),
-  valeurs: (0, 5, 10, 15, 20),
-  ctz-intervalle(
-    7, 13, type: "OF",
-    couleur: blue, decor: "fond", aff-valeurs: true,
+  ticks: range(0, 21),
+  major-ticks: range(0,5).map(k => k*5),
+  values: (0, 5, 10, 15, 20),
+  ctz-interval(
+    7, 13, type: "OC",
+    color: blue, decor: "fill", show-values: true,
   ),
 )
 ```
 
 </details>
 
-### 6. Valeurs
+### 6. Values
 
 <details>
 <summary><img src="images/06-01.svg" alt="exemple 6.1"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -5, xmax: 5,
-  graduations: range(-5, 6),
-  valeurs: range(-5, 6),
-  ctz-intervalle(
-    -2, 3, type: "FO",
+  ticks: range(-5, 6),
+  values: range(-5, 6),
+  ctz-interval(
+    -2, 3, type: "CO",
   ),
 )
 ```
@@ -349,12 +347,12 @@ Cliquer sur le petit triangle à gauche pour voir le code du dessin.
 <summary><img src="images/06-02.svg" alt="exemple 6.2"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: 0, xmax: 3,
-  graduations: range(0, 7).map(k => k / 2),
-  valeurs: range(0, 7).map(k => k / 2),
-  ctz-intervalle(
-    0.5, 2.5, type: "FO",
+  ticks: range(0, 7).map(k => k / 2),
+  values: range(0, 7).map(k => k / 2),
+  ctz-interval(
+    0.5, 2.5, type: "CO",
   ),
 )
 ```
@@ -365,14 +363,14 @@ Cliquer sur le petit triangle à gauche pour voir le code du dessin.
 <summary><img src="images/06-03.svg" alt="exemple 6.3"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -3, xmax: 4,
-  graduations: range(-3, 5), 
-  valeurs: range(-3,5),
-  ctz-intervalle(
+  ticks: range(-3, 5), 
+  values: range(-3,5),
+  ctz-interval(
     -calc.sqrt(2), 10/3, type: "OO",
-    couleur: blue, decor: "fond",
-    aff-valeurs: true, label-inf: $sqrt(2)$, label-sup: $10/3$
+    color: blue, decor: "fill",
+    show-values: true, label-inf: $sqrt(2)$, label-sup: $10/3$
   ),
 )
 ```
@@ -383,11 +381,11 @@ Cliquer sur le petit triangle à gauche pour voir le code du dessin.
 <summary><img src="images/06-04.svg" alt="exemple 6.4"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: 0, xmax: 10,
-  ctz-intervalle(
+  ctz-interval(
     2, 7,
-    decor: "fond", aff-valeurs: true, pos-valeurs: "below",
+    decor: "fill", show-values: true, pos-values: "below",
     label-inf: $a$, label-sup: $b$,
   ),
 )
@@ -399,15 +397,15 @@ Cliquer sur le petit triangle à gauche pour voir le code du dessin.
 <summary><img src="images/06-05.svg" alt="exemple 6.5"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -2, xmax: 3,
-  graduations: range(-6, 10).map(k => k / 3),
-  graduations-alt: range(-2, 4),
-  valeurs: range(-2, 4),
-  ctz-intervalle(
-    -2/3, 5/3, type: "FO",
-    couleur: blue, decor: "fond",
-    aff-valeurs: true, 
+  ticks: range(-6, 10).map(k => k / 3),
+  major-ticks: range(-2, 4),
+  values: range(-2, 4),
+  ctz-interval(
+    -2/3, 5/3, type: "CO",
+    color: blue, decor: "fill",
+    show-values: true, 
   ),
 )
 ```
@@ -418,38 +416,38 @@ Cliquer sur le petit triangle à gauche pour voir le code du dessin.
 <summary><img src="images/06-06.svg" alt="exemple 6.6"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -2, xmax: 3,
-  graduations: range(-6, 10).map(k => k / 3),
-  graduations-alt: range(-2, 4),
-  valeurs: range(-2, 4),
-  ctz-intervalle(
-    -2/3, 5/3, type: "FO",
-    couleur: blue, decor: "fond",
-    aff-valeurs: true, label-inf: $-2/3$, label-sup: $5/3$,
+  ticks: range(-6, 10).map(k => k / 3),
+  major-ticks: range(-2, 4),
+  values: range(-2, 4),
+  ctz-interval(
+    -2/3, 5/3, type: "CO",
+    color: blue, decor: "fill",
+    show-values: true, label-inf: $-2/3$, label-sup: $5/3$,
   ),
 )
 ```
 
 </details>
 
-### 7. Plusieurs intervalles
+### 7. Several intervals
 
 <details>
 <summary><img src="images/07-01.svg" alt="exemple 7.1"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -4, xmax: 5,
-  graduations: range(-4, 6),
-  valeurs: (-1, 2),
-  ctz-intervalle(
-    "*", -1, type: "OF",
-    couleur: blue, decor: "hach",
+  ticks: range(-4, 6),
+  values: (-1, 2),
+  ctz-interval(
+    "*", -1, type: "OC",
+    color: blue, decor: "hatch",
   ),
-  ctz-intervalle(
-    2, "*", type: "FO",
-    couleur: blue, decor: "hach",
+  ctz-interval(
+    2, "*", type: "CO",
+    color: blue, decor: "hatch",
   ),
 )
 ```
@@ -460,22 +458,22 @@ Cliquer sur le petit triangle à gauche pour voir le code du dessin.
 <summary><img src="images/07-02.svg" alt="exemple 7.2"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -5, xmax: 5,
-  graduations: range(-5, 6),
-  valeurs: range(-5, 6),
-  ctz-intervalle(
-    -3, 2, type: "OF",
-    couleur: blue, decor: "hach/60",
-    aff-valeurs: true,
+  ticks: range(-5, 6),
+  values: range(-5, 6),
+  ctz-interval(
+    -3, 2, type: "OC",
+    color: blue, decor: "hatch/60",
+    show-values: true,
   ),
-  ctz-intervalle(
-    0, 4, type: "FO",
-    couleur: red, niveau-v: 1.25, decor: "hach/120",
+  ctz-interval(
+    0, 4, type: "CO",
+    color: red, level: 1.25, decor: "hatch/120",
   ),
-  ctz-intervalle(
-    -1, 1, type: "OF",
-    couleur: green, decor: "fond",
+  ctz-interval(
+    -1, 1, type: "OC",
+    color: green, decor: "fill",
   ),
 )
 ```
@@ -486,32 +484,32 @@ Cliquer sur le petit triangle à gauche pour voir le code du dessin.
 <summary><img src="images/07-03.svg" alt="exemple 7.3"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -6, xmax: 6,
-  graduations: range(-6, 7),
-  valeurs: (-4, -1, 2, 5),
-  ctz-intervalle(
+  ticks: range(-6, 7),
+  values: (-4, -1, 2, 5),
+  ctz-interval(
     -4, 2,
-    couleur: red, decor: "fond",
+    color: red, decor: "fill",
   ),
-  ctz-intervalle(
+  ctz-interval(
     -1, 5, type: "OO",
-    couleur: blue, decor: "fond",
+    color: blue, decor: "fill",
   ),
 )
 ```
 
 </details>
 
-### 8. Les exemples de la doc de ProfLycee (§13, p. 55 à 58)
+### 8. The examples from ProfLycee's documentation (§13, p. 55–58)
 
 <details>
 <summary><img src="images/08-01.svg" alt="exemple 8.1"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -8, xmax: 20,
-  ctz-intervalle(
+  ctz-interval(
     "*", 13,
   ),
 )
@@ -523,11 +521,11 @@ Cliquer sur le petit triangle à gauche pour voir le code du dessin.
 <summary><img src="images/08-02.svg" alt="exemple 8.2"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -2, xmax: 8,
-  unite: 1cm,
-  graduations: range(-2, 9),
-  graduations-alt: (0, 5),
+  unit: 1cm,
+  ticks: range(-2, 9),
+  major-ticks: (0, 5),
 )
 ```
 
@@ -537,25 +535,25 @@ Cliquer sur le petit triangle à gauche pour voir le code du dessin.
 <summary><img src="images/08-03.svg" alt="exemple 8.3"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -100, xmax: 200,
-  longueur: 10, police: (size: 7pt), ep-trait: 0.6pt,
-  graduations: range(-100, 201, step: 10),
-  graduations-alt: range(-100, 201, step: 50),
-  valeurs: range(-100, 201, step: 50),
-  ctz-intervalle(
+  width: 10, text-style: (size: 7pt), thickness: 0.6pt,
+  ticks: range(-100, 201, step: 10),
+  major-ticks: range(-100, 201, step: 50),
+  values: range(-100, 201, step: 50),
+  ctz-interval(
     -15, 175,
-    aff-valeurs: true,
+    show-values: true,
   ),
-  ctz-intervalle(
+  ctz-interval(
     -56, 25,
-    couleur: teal, decor: "fond",
-    aff-valeurs: true,
+    color: teal, decor: "fill",
+    show-values: true,
   ),
-  ctz-intervalle(
+  ctz-interval(
     0, 79, type: "OO",
-    couleur: purple, decor: "zigzag", niveau-v: 1.5,
-    aff-valeurs: true,
+    color: purple, decor: "zigzag", level: 1.5,
+    show-values: true,
   ),
 )
 ```
@@ -566,23 +564,23 @@ Cliquer sur le petit triangle à gauche pour voir le code du dessin.
 <summary><img src="images/08-04.svg" alt="exemple 8.4"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -8, xmax: 8,
-  graduations: range(-8, 9),
-  ctz-intervalle(
+  ticks: range(-8, 9),
+  ctz-interval(
     -2, 5,
-    decor: "fond",
-    aff-valeurs: true, pos-valeurs: "below",
+    decor: "fill",
+    show-values: true, pos-values: "below",
   ),
-  ctz-intervalle(
+  ctz-interval(
     -7, -1, type: "OO",
-    couleur: blue, decor: "zigzag",
-    aff-valeurs: true, pos-valeurs: "below",
+    color: blue, decor: "zigzag",
+    show-values: true, pos-values: "below",
   ),
-  ctz-intervalle(
-    "*", 6, type: "FO",
-    couleur: orange, decor: "hach", niveau-v: 1.25,
-    aff-valeurs: true,
+  ctz-interval(
+    "*", 6, type: "CO",
+    color: orange, decor: "hatch", level: 1.25,
+    show-values: true,
   ),
 )
 ```
@@ -593,19 +591,19 @@ Cliquer sur le petit triangle à gauche pour voir le code du dessin.
 <summary><img src="images/08-05.svg" alt="exemple 8.5"></summary>
 
 ```typ
-#rep-intervalles(
+#rpz-interval(
   xmin: -8, xmax: 8,
-  graduations: range(-8, 9),
-  ctz-intervalle(
+  ticks: range(-8, 9),
+  ctz-interval(
     -2, 5,
-    decor: "fond",
-    aff-valeurs: true, pos-valeurs: "below",
+    decor: "fill",
+    show-values: true, pos-values: "below",
     label-inf: $a$, label-sup: $b$,
   ),
-  ctz-intervalle(
+  ctz-interval(
     -calc.sqrt(5), 2 / 3, type: "OO",
-    couleur: blue, decor: "fond",
-    aff-valeurs: true,
+    color: blue, decor: "fill",
+    show-values: true,
     label-inf: $-sqrt(5)$, label-sup: $2/3$,
   ),
 )
@@ -614,47 +612,48 @@ Cliquer sur le petit triangle à gauche pour voir le code du dessin.
 </details>
 <!-- fin des exemples -->
 
-## Les clés
+## Keys
 
-La fonction `rep-intervalles(clés, …)` dessine l'axe et les `ctz-intervalle(…)` qu'on y
-met. La fonction `rep-intervalles-dessin`
-prend les mêmes clés, mais donne les éléments CeTZ seuls, à mettre dans son
-propre `cetz.canvas` (importer alors CeTZ : `#import "@preview/cetz:0.5.2"`).
+`rpz-interval(keys, …)` draws the axis and the `ctz-interval(…)` given to it.
+`rpz-interval-draw` takes the same keys but returns the CeTZ elements only, to
+be put in your own `cetz.canvas` (then import CeTZ yourself:
+`#import "@preview/cetz:0.5.2"`).
 
-### Clés de `rep-intervalles`
+### Keys of `rpz-interval`
 
-| Clé | Défaut | Rôle |
+| Key | Default | Meaning |
 |---|---|---|
-| `xmin`, `xmax` | `-8`, `8` | bornes de l'axe |
-| `longueur` | `12` | longueur de l'axe de `xmin` à `xmax`, en cm |
-| `unite` | `auto` | longueur d'une unité (`1cm`) ; `auto` : d'après `longueur` |
-| `graduations` | `()` | abscisses des graduations |
-| `graduations-alt` | `()` | abscisses des grandes graduations |
-| `valeurs` | `()` | nombres écrits sous l'axe |
-| `haut-grad` | `7pt` | hauteur d'une graduation |
-| `hauteur` | `12pt` | hauteur des intervalles (crochets, décoration) |
-| `ep-trait` | `1pt` | épaisseur des traits |
-| `police` | `(:)` | réglages du texte, comme `(size: 8pt)` |
+| `xmin`, `xmax` | `-8`, `8` | ends of the axis |
+| `width` | `12` | length of the axis from `xmin` to `xmax`, in cm |
+| `unit` | `auto` | length of one unit (`1cm`); `auto`: computed from `width` |
+| `ticks` | `()` | positions of the ticks |
+| `major-ticks` | `()` | positions of the major (longer) ticks |
+| `values` | `()` | numbers written below the axis |
+| `tick-height` | `7pt` | height of a tick |
+| `height` | `12pt` | height of the intervals (brackets, decoration) |
+| `thickness` | `1pt` | line thickness |
+| `text-style` | `(:)` | text settings, such as `(size: 8pt)` (not `fill`) |
 
+### Keys of `ctz-interval`
 
-### Clés de `ctz-intervalle`
+`ctz-interval(inf, sup, keys)`: an infinite bound is written `"*"` (or
+`none`); the other bounds are Typst numbers (`0`, `2 / 3`, `calc.sqrt(5)`),
+not strings (`"0"`) nor math (`$sqrt(5)$`).
 
-`ctz-intervalle(inf, sup, clés)` : une borne infinie s'écrit `"*"` (ou
-`none`) ; les autres sont des nombres Typst (`0`, `2 / 3`, `calc.sqrt(5)`),
-pas du texte (`"0"`) ni des maths (`$sqrt(5)$`).
-
-| Clé | Défaut | Rôle |
+| Key | Default | Meaning |
 |---|---|---|
-| `type` | `"FF"` | crochets : `"FF"`, `"FO"`, `"OF"` ou `"OO"` (F fermé, O ouvert) |
-| `couleur` | `red` | couleur |
-| `decor` | `none` | `"fond"`, `"zigzag"`, `"hach"` ou `"hach/<angle>"` (angle non horizontal, `"hach"` : 45°) |
-| `niveau-v` | `0` | hauteur, en hauteurs d'intervalle (`1.25` : au-dessus de l'axe) |
-| `aff-valeurs` | `false` | écrire les bornes |
-| `pos-valeurs` | `"above"` | au-dessus (`"above"`) ou en dessous (`"below"`) |
-| `label-inf`, `label-sup` | `auto` | étiquettes des bornes, comme `$-sqrt(5)$` |
-| `num-inf`, `num-sup` | `true` | `false` : bornes écrites telles quelles, sans virgule |
+| `type` | `"CC"` | brackets: `"CC"`, `"CO"`, `"OC"` or `"OO"` (C closed, O open) |
+| `color` | `red` | color |
+| `decor` | `none` | `"fill"`, `"zigzag"`, `"hatch"` or `"hatch/<angle>"` (not horizontal; `"hatch"`: 45°) |
+| `level` | `0` | vertical position, in interval heights (`1.25`: above the axis) |
+| `show-values` | `false` | write the bounds |
+| `pos-values` | `"above"` | above (`"above"`) or below (`"below"`) the interval |
+| `label-inf`, `label-sup` | `auto` | labels of the bounds, such as `$-sqrt(5)$` |
 
-## Licence
+Numbers (bounds and `values`) are written with a decimal comma and at most
+4 decimals, as in French: `1.5` gives 1,5.
 
-MIT. Réécriture indépendante d'après la documentation de ProfLycee (rendu,
-noms des clés), sans reprise de son code (LPPL).
+## License
+
+MIT. Independent rewrite based on ProfLycee's documentation (rendering, key
+names), without reusing its code (LPPL).

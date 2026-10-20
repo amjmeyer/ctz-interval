@@ -1,51 +1,51 @@
 #import "../src/lib.typ": *
 #set page(width: 16cm, height: auto, margin: 1cm)
 
-= Plusieurs intervalles
+= Several intervals
 
-#rep-intervalles(
+#rpz-interval(
   xmin: -4, xmax: 5,
-  graduations: range(-4, 6),
-  valeurs: (-1, 2),
-  ctz-intervalle(
-    "*", -1, type: "OF",
-    couleur: blue, decor: "hach",
+  ticks: range(-4, 6),
+  values: (-1, 2),
+  ctz-interval(
+    "*", -1, type: "OC",
+    color: blue, decor: "hatch",
   ),
-  ctz-intervalle(
-    2, "*", type: "FO",
-    couleur: blue, decor: "hach",
+  ctz-interval(
+    2, "*", type: "CO",
+    color: blue, decor: "hatch",
   ),
 )
 
-#rep-intervalles(
+#rpz-interval(
   xmin: -5, xmax: 5,
-  graduations: range(-5, 6),
-  valeurs: range(-5, 6),
-  ctz-intervalle(
-    -3, 2, type: "OF",
-    couleur: blue, decor: "hach/60",
-    aff-valeurs: true,
+  ticks: range(-5, 6),
+  values: range(-5, 6),
+  ctz-interval(
+    -3, 2, type: "OC",
+    color: blue, decor: "hatch/60",
+    show-values: true,
   ),
-  ctz-intervalle(
-    0, 4, type: "FO",
-    couleur: red, niveau-v: 1.25, decor: "hach/120",
+  ctz-interval(
+    0, 4, type: "CO",
+    color: red, level: 1.25, decor: "hatch/120",
   ),
-  ctz-intervalle(
-    -1, 1, type: "OF",
-    couleur: green, decor: "fond",
+  ctz-interval(
+    -1, 1, type: "OC",
+    color: green, decor: "fill",
   ),
 )
 
-#rep-intervalles(
+#rpz-interval(
   xmin: -6, xmax: 6,
-  graduations: range(-6, 7),
-  valeurs: (-4, -1, 2, 5),
-  ctz-intervalle(
+  ticks: range(-6, 7),
+  values: (-4, -1, 2, 5),
+  ctz-interval(
     -4, 2,
-    couleur: red, decor: "fond",
+    color: red, decor: "fill",
   ),
-  ctz-intervalle(
+  ctz-interval(
     -1, 5, type: "OO",
-    couleur: blue, decor: "fond",
+    color: blue, decor: "fill",
   ),
 )

@@ -1,36 +1,36 @@
 #import "../src/lib.typ": *
 #set page(width: 16cm, height: auto, margin: 1cm)
 
-= Le plus simple : pas de graduation
+= The simplest: no ticks
 
-#rep-intervalles(
+#rpz-interval(
   xmin: 0, xmax: 6,
-  valeurs: (3,),
-  ctz-intervalle(
-    3, "*", type: "FO",
+  values: (3,),
+  ctz-interval(
+    3, "*", type: "CO",
   ),
 )
 
-#rep-intervalles(
+#rpz-interval(
   xmin: -3, xmax: 6,
-  valeurs: (-1, 4),
-  ctz-intervalle(
+  values: (-1, 4),
+  ctz-interval(
     -1, 4,
   ),
 )
 
-#rep-intervalles(
+#rpz-interval(
   xmin: -3, xmax: 5,
-  ctz-intervalle(
+  ctz-interval(
     "*", 2, type: "OO",
-    aff-valeurs: true,
+    show-values: true,
   ),
 )
 
-#rep-intervalles(
+#rpz-interval(
   xmin: -2, xmax: 7,
-  ctz-intervalle(
-    0, 5, type: "OF",
-    aff-valeurs: true, pos-valeurs: "below",
+  ctz-interval(
+    0, 5, type: "OC",
+    show-values: true, pos-values: "below",
   ),
 )

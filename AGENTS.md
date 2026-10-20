@@ -1,96 +1,97 @@
-# ctz-interval — guide pour les agents
+# ctz-interval — guide for coding agents
 
-Paquet Typst qui dessine des intervalles sur une droite graduée, d'après
-`RepIntervalles` (§13) du package LaTeX ProfLycee de Cédric Pierquet. Il
-utilise CeTZ. Le code, les clés et les messages sont en français.
+Typst package that draws intervals on a number line, after `RepIntervalles`
+(§13) of Cédric Pierquet's LaTeX package ProfLycee. Built on CeTZ. Public
+names, keys, error messages and README are in English; comments and internal
+names (prefixed with `_`, or local variables) are in French.
 
-## Organisation
+## Layout
 
 ```
 src/
-  lib.typ              point d'entrée : n'exporte que rep-intervalles,
-                       rep-intervalles-dessin et ctz-intervalle
-  deps.typ             seul import externe (@preview/cetz:0.5.2)
-  outils.typ           _nombre, _infini, _est-nombre (non exportés)
-  rep-intervalles.typ  tout le reste
-exemples/              01-… à 09-… : un fichier par usage ; doc-proflycee.typ
-  readme.sh            refait la partie « Exemples » du README
-images/                SVG du README, produits par exemples/readme.sh
-tests/lancer.sh        lance tous les tests
+  lib.typ           entry point: exports only rpz-interval,
+                    rpz-interval-draw and ctz-interval
+  deps.typ          the only external import (@preview/cetz:0.5.2)
+  outils.typ        _nombre, _infini, _est-nombre (not exported)
+  rpz-interval.typ  everything else
+exemples/           01-… to 09-…: one file per use case; doc-proflycee.typ
+  readme.sh         rebuilds the "Examples" part of the README
+images/             README SVGs, produced by exemples/readme.sh
+tests/lancer.sh     runs all the tests
 ```
 
-## Fonctionnement
+## How it works
 
-Le travail se fait en deux temps.
+Two steps.
 
-1. **`ctz-intervalle(inf, sup, clés)` ne dessine rien.** Elle vérifie ses
-   arguments (`panic` avec un message clair sinon) et renvoie un
-   dictionnaire, une « fiche » : `(objet: "intervalle", inf: …, sup: …,
-   couleur: …, …)`. Au passage, une borne infinie (`"*"` ou `none`) devient
-   `none`, et `decor: "hach/60"` devient `decor: "hach"` + `angle: 60deg`.
-2. **`rep-intervalles-dessin(clés, ..fiches)` dessine** l'axe, les
-   graduations, les valeurs, puis les intervalles. Il refuse toute clé
-   inconnue et tout objet qui n'est pas une fiche `objet: "intervalle"`.
-   `rep-intervalles` l'enveloppe dans `cetz.canvas(length: 1cm, …)`.
+1. **`ctz-interval(inf, sup, keys)` draws nothing.** It checks its arguments
+   (`panic` with a clear message otherwise) and returns a dictionary, a
+   "record": `(objet: "intervalle", inf: …, sup: …, color: …, …)`. An
+   infinite bound (`"*"` or `none`) becomes `none`, and `decor: "hatch/60"`
+   becomes `decor: "hatch"` + `angle: 60deg`.
+2. **`rpz-interval-draw(keys, ..records)` draws** the axis, ticks, values,
+   then the intervals. It rejects unknown keys and anything that is not an
+   `objet: "intervalle"` record. `rpz-interval` wraps it in
+   `cetz.canvas(length: 1cm, …)`.
 
-Pourquoi deux temps : seul `rep-intervalles` connaît l'échelle de l'axe, et
-il dessine en **deux passes** (toutes les décorations, puis tous les
-traits) pour qu'un fond ne masque jamais le crochet d'un autre intervalle.
+Why two steps: only `rpz-interval` knows the axis scale, and it draws in
+**two passes** (all decorations, then all lines) so that a fill never hides
+the bracket of another interval.
 
-Repères du dessin (`rep-intervalles-dessin`) :
+Drawing details (`rpz-interval-draw`):
 
-- Échelle : `u = longueur / (xmax - xmin)` cm par unité si `unite: auto`,
-  sinon `unite / 1cm` ; `X(x) = x * u`. Coordonnées CeTZ en cm.
-- L'axe dépasse de 5 % de sa longueur de chaque côté (place pour la flèche
-  et les bornes infinies). Une borne sup infinie s'arrête 0,2 avant la
-  flèche.
-- Un intervalle est centré à la hauteur `niveau-v * hauteur` ; ses crochets
-  et sa bande de décoration vont de `-hauteur/2` à `+hauteur/2` autour.
-- Les nombres de `valeurs` se placent sous le plus bas des deux : grandes
-  graduations (`0,8 * haut-grad`) ou crochets (`hauteur / 2`).
-- Hachures : droites inclinées de `angle`, coupées à l'intervalle par
-  `_dans-bande` (testée à part).
-- Étiquette d'une borne : `label-inf`/`label-sup` s'il est donné, sinon
-  `_nombre(borne)` (arrondi à 4 décimales, virgule décimale), ou la borne
-  telle quelle si `num-inf`/`num-sup: false`.
+- Scale: `u = width / (xmax - xmin)` cm per unit if `unit: auto`, else
+  `unit / 1cm`; `X(x) = x * u`. CeTZ coordinates are in cm.
+- The axis extends 5 % of its length on each side (room for the arrow and
+  infinite bounds). An infinite sup bound stops 0.2 before the arrow.
+- An interval is centred at height `level * height`; its brackets and
+  decoration band span `±height/2` around it. Closed bracket `C` faces
+  inwards, open bracket `O` outwards.
+- `values` are written below the lower of: major ticks (`0.8 * tick-height`)
+  or brackets (`height / 2`).
+- Hatching: lines tilted by `angle`, clipped to the interval by
+  `_dans-bande` (tested on its own).
+- Bound label: `label-inf`/`label-sup` if given, else `_nombre(bound)`
+  (rounded to 4 decimals, decimal comma).
 
 ## Conventions
 
-- Noms et clés en kebab-case français. Les noms internes commencent par `_`
-  (non exportés par `lib.typ`).
-- En-tête MIT (3 lignes) dans chaque `.typ` de `src/`. Commentaires courts.
-- Réécriture indépendante : ne jamais recopier le code de ProfLycee (LPPL).
-- Une nouvelle clé ou un nouveau cas : l'ajouter dans `exemples/` et dans le
-  tableau des clés du README, avec un test si possible.
+- Public names and keys in English kebab-case; internal names start with `_`
+  (not exported by `lib.typ`).
+- 3-line MIT header in every `.typ` of `src/`. Short comments.
+- Independent rewrite: never copy ProfLycee's code (LPPL).
+- A new key or case: add it to `exemples/` and to the README key tables,
+  with a test if possible.
 
 ## Tests
 
-`tests/lancer.sh` (ou `tests/lancer.sh <début de nom>` pour filtrer)
-compile, sans produire de fichier :
+`tests/lancer.sh` (or `tests/lancer.sh <name prefix>` to filter) compiles,
+producing no file:
 
-- `exemples/*.typ` : doivent compiler sans erreur (un avertissement est
-  signalé, sans compter comme échec) ;
-- les blocs ```` ```typ ```` du README ;
-- `tests/unitaires/*.typ` : assertions (`aide.typ` fournit `egal`, `texte`,
-  `releve-textes`) ;
-- `tests/erreurs/*.typ` : doivent échouer avec le message annoncé en
-  première ligne (`// attendu : …`).
+- `exemples/*.typ`: must compile without error (warnings are reported but
+  do not fail);
+- the ```` ```typ ```` blocks of the README;
+- `tests/unitaires/*.typ`: assertions (`aide.typ` provides `egal`, `texte`,
+  `releve-textes`);
+- `tests/erreurs/*.typ`: must fail with the message given on the first line
+  (`// attendu : …`).
 
-Code de sortie = nombre d'échecs. Après avoir modifié un exemple ou le
-rendu, relancer `exemples/readme.sh` : il recompile les dessins de
-`01-…` à `07-…` et de `doc-proflycee.typ` en SVG et réécrit le README entre
-les repères `<!-- exemples … -->` et `<!-- fin des exemples -->` (ne pas
-modifier cette partie à la main). Un dessin = un bloc qui commence par
-`#rep-intervalles(` et se termine par `)` seul sur sa ligne.
+Exit code = number of failures. After changing an example or the rendering,
+run `exemples/readme.sh`: it compiles the drawings of `01-…` to `07-…` and
+`doc-proflycee.typ` to SVG and rewrites the README between the
+`<!-- exemples … -->` and `<!-- fin des exemples -->` markers (do not edit
+that part by hand). A drawing = a block starting with `#rpz-interval(` and
+ending with `)` alone on its line.
 
-## Pièges connus
+## Known pitfalls
 
-- Le paramètre `type` de `ctz-intervalle` masque la fonction `type()` dans
-  son corps : tester les types dans `outils.typ` (`_est-nombre`).
-- Les bornes sont des nombres Typst (`0`, `2 / 3`, `calc.sqrt(5)`), jamais
-  du texte (`"0"`) ni du contenu (`$sqrt(5)$`) ; seul `"*"` est accepté
-  comme texte (borne infinie).
-- `police` est passé à `text(..police, fill: …)` : y mettre `fill`
-  provoque une erreur (argument en double).
-- En mode math, un nom à tiret (`ctz-intervalle`) se lit comme une
-  soustraction : l'appeler avec `#`.
+- The `type` parameter of `ctz-interval` shadows the `type()` function in
+  its body: test types in `outils.typ` (`_est-nombre`). For the same reason
+  no key is named `length` or `text`.
+- Bounds are Typst numbers (`0`, `2 / 3`, `calc.sqrt(5)`), never strings
+  (`"0"`) nor content (`$sqrt(5)$`); only `"*"` is accepted as a string
+  (infinite bound).
+- `text-style` is passed to `text(..text-style, fill: …)`: putting `fill`
+  in it raises an error (duplicate argument).
+- In math mode, a hyphenated name (`ctz-interval`) reads as a subtraction:
+  call it with `#`.

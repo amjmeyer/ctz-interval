@@ -4,7 +4,8 @@ version = "0.1.0"
 entrypoint = "src/lib.typ"
 authors = ["Arthur Meyer"]
 license = "MIT"
-description = "Intervals on a number line, after ProfLycee's RepIntervalles"
+repository = "https://github.com/amjmeyer/ctz-interval"
+description = "Draw intervals on a number line, after ProfLycee."
 keywords = [
   "intervalle", "interval", "droite graduée", "number line",
   "ProfLycee", "tkz", "lycée", "enseignement", "teaching", "cetz",
@@ -12,4 +13,4 @@ keywords = [
 categories = ["visualization", "components"]
 disciplines = ["education", "mathematics"]
 compiler = "0.14.0"
-exclude = ["tests/*", "exemples/*", "CHANGELOG.md", "CLAUDE.md", "AGENTS.md"]
+exclude = ["tests/*", "exemples/*", "images/*", "CHANGELOG.md", "CLAUDE.md", "AGENTS.md"]

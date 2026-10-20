@@ -1,3 +1,3 @@
-// attendu : rep-intervalles : clé inconnue
+// attendu : rpz-interval: unknown key
 #import "/src/lib.typ": *
-#rep-intervalles(couleur: red)
+#rpz-interval(color: red)

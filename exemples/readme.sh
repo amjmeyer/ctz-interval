@@ -24,8 +24,8 @@ for numero, fichier in enumerate(fichiers + ["exemples/doc-proflycee.typ"], 1):
     texte = open(fichier).read()
     titre = re.search(r"^= (.*)$", texte, re.M).group(1)
     lignes += ["", "### %d. %s" % (numero, titre)]
-    # un dessin = un bloc #rep-intervalles( … ) terminé par « ) » seul sur sa ligne
-    for k, code in enumerate(re.findall(r"^#rep-intervalles\(.*?^\)$", texte, re.S | re.M), 1):
+    # un dessin = un bloc #rpz-interval( … ) terminé par « ) » seul sur sa ligne
+    for k, code in enumerate(re.findall(r"^#rpz-interval\(.*?^\)$", texte, re.S | re.M), 1):
         image = "images/%02d-%02d.svg" % (numero, k)
         subprocess.run(["typst", "compile", "--root", ".", "--format", "svg", "-", image],
                        input=entete + code, text=True, check=True)

@@ -4,8 +4,8 @@
 
 // Point d'entrée du paquet.
 
-#import "rep-intervalles.typ": (
-  rep-intervalles,
-  rep-intervalles-dessin,
-  ctz-intervalle,
+#import "rpz-interval.typ": (
+  rpz-interval,
+  rpz-interval-draw,
+  ctz-interval,
 )

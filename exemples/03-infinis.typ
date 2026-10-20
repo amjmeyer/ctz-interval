@@ -1,45 +1,45 @@
 #import "../src/lib.typ": *
 #set page(width: 16cm, height: auto, margin: 1cm)
 
-= Bornes infinies
+= Infinite bounds
 
-#rep-intervalles(
+#rpz-interval(
   xmin: -5, xmax: 4,
-  graduations: range(-5, 5),
-  valeurs: (1,),
-  ctz-intervalle(
-    "*", 1, type: "OF",
-    couleur: blue, decor: "fond",
+  ticks: range(-5, 5),
+  values: (1,),
+  ctz-interval(
+    "*", 1, type: "OC",
+    color: blue, decor: "fill",
   ),
 )
 
-#rep-intervalles(
+#rpz-interval(
   xmin: -5, xmax: 4,
-  graduations: range(-5, 5),
-  valeurs: (-2,),
-  ctz-intervalle(
-    -2, "*", type: "FO",
-    couleur: blue, decor: "fond",
+  ticks: range(-5, 5),
+  values: (-2,),
+  ctz-interval(
+    -2, "*", type: "CO",
+    color: blue, decor: "fill",
   ),
 )
 
-#rep-intervalles(
+#rpz-interval(
   xmin: -5, xmax: 4,
-  graduations: range(-5, 5),
-  valeurs: (0,),
-  ctz-intervalle(
+  ticks: range(-5, 5),
+  values: (0,),
+  ctz-interval(
     "*", "*", type: "OO",
-    couleur: blue, decor: "fond",
+    color: blue, decor: "fill",
   ),
 )
 
-#rep-intervalles(
+#rpz-interval(
   xmin: -10, xmax: 10,
-  graduations: range(-10, 11),
-  valeurs: (0,),
-  longueur: 12,
-  ctz-intervalle(
+  ticks: range(-10, 11),
+  values: (0,),
+  width: 12,
+  ctz-interval(
     "*", 0, type: "OO",
-    couleur: gray, decor: "hach/135",
+    color: gray, decor: "hatch/135",
   ),
 )

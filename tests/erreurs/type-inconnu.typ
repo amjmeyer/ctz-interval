@@ -1,3 +1,3 @@
-// attendu : ctz-intervalle : type doit être
+// attendu : ctz-interval: type must be
 #import "/src/lib.typ": *
-#ctz-intervalle(0, 1, type: "FX")
+#ctz-interval(0, 1, type: "FX")

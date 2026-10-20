@@ -1,48 +1,48 @@
 #import "../src/lib.typ": *
 #set page(width: 16cm, height: auto, margin: 1cm)
 
-= Décorations
+= Decorations
 
-#rep-intervalles(
+#rpz-interval(
   xmin: -1, xmax: 6,
-  valeurs: (1, 4),
-  ctz-intervalle(
+  values: (1, 4),
+  ctz-interval(
     1, 4,
-    couleur: teal, decor: "fond",
+    color: teal, decor: "fill",
   ),
 )
 
-#rep-intervalles(
+#rpz-interval(
   xmin: -1, xmax: 6,
-  valeurs: (1, 4),
-  ctz-intervalle(
+  values: (1, 4),
+  ctz-interval(
     1, 4,
-    couleur: purple, decor: "zigzag",
+    color: purple, decor: "zigzag",
   ),
 )
 
-#rep-intervalles(
+#rpz-interval(
   xmin: -1, xmax: 6,
-  valeurs: (1, 4),
-  ctz-intervalle(
+  values: (1, 4),
+  ctz-interval(
     1, 4,
-    couleur: orange, decor: "hach",
+    color: orange, decor: "hatch",
   ),
 )
 
-#rep-intervalles(
+#rpz-interval(
   xmin: -1, xmax: 11,
-  valeurs: (0, 3, 4, 7, 8, 10),
-  ctz-intervalle(
+  values: (0, 3, 4, 7, 8, 10),
+  ctz-interval(
     0, 3,
-    couleur: orange, decor: "hach/30",
+    color: orange, decor: "hatch/30",
   ),
-  ctz-intervalle(
+  ctz-interval(
     4, 7,
-    couleur: orange, decor: "hach/90",
+    color: orange, decor: "hatch/90",
   ),
-  ctz-intervalle(
+  ctz-interval(
     8, 10,
-    couleur: orange, decor: "hach/150",
+    color: orange, decor: "hatch/150",
   ),
 )

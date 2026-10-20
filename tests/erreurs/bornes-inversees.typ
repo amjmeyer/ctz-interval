@@ -1,3 +1,3 @@
-// attendu : doit être strictement inférieure à la borne sup
+// attendu : must be less than the sup bound
 #import "/src/lib.typ": *
-#ctz-intervalle(2, 1)
+#ctz-interval(2, 1)

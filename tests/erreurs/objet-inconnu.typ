@@ -1,3 +1,3 @@
-// attendu : on n'y met que des ctz-intervalle
+// attendu : only ctz-interval(…) can be drawn
 #import "/src/lib.typ": *
-#rep-intervalles([texte])
+#rpz-interval([texte])
