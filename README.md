@@ -19,7 +19,7 @@ Il n'y a pas de documentation : j'estime que les exemples ci-dessous suffisent.
 
 ## Exemples
 
-Cliquer sur un dessin pour voir son code.
+Cliquer sur le petit triangle à gauche pour voir le code du dessin.
 
 <!-- exemples : partie refaite par exemples/readme.sh, ne pas modifier à la main -->
 ### 1. Le plus simple : pas de graduation
